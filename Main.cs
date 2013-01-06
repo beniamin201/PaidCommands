@@ -19,7 +19,6 @@ namespace PaidCommands
     [APIVersion(1, 12)]
     public class PaidCommands : TerrariaPlugin
     {
-        public IDbConnection Database;
         public String SavePath = Path.Combine(TShock.SavePath, "PaidCommands/");
         internal static Config config;
         public override string Name
@@ -36,7 +35,7 @@ namespace PaidCommands
         }
         public override Version Version
         {
-            get { return new Version("0.1"); }
+            get { return new Version("0.2"); }
         }
         public PaidCommands(Main game)
             : base(game)
@@ -49,16 +48,12 @@ namespace PaidCommands
             {
                 GameHooks.Initialize -= OnInitialize;
                 ServerHooks.Chat -= OnChat;
-                ServerHooks.Command -= OnCommand;
-
-                Database.Dispose();
             }
         }
         public override void Initialize()
         {
             ServerHooks.Chat += OnChat;
             GameHooks.Initialize += OnInitialize;
-            ServerHooks.Command += OnCommand;
         }
         void OnInitialize()
         {
@@ -67,9 +62,6 @@ namespace PaidCommands
                 Directory.CreateDirectory(SavePath);
             ReadConfig();
         
-        }
-        void OnCommand(string cmd, HandledEventArgs args)
-        {
         }
         void OnChat(messageBuffer buf, int who, string text, HandledEventArgs args)
         {
