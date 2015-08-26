@@ -16,7 +16,7 @@ using Vault;
 
 namespace PaidCommands
 {
-    [APIVersion(1, 12)]
+    [APIVersion(1, 21)]
     public class PaidCommands : TerrariaPlugin
     {
         public String SavePath = Path.Combine(TShock.SavePath, "PaidCommands/");
